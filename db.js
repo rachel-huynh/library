@@ -134,7 +134,16 @@ export function topicSubtreeIds(topics, rootId) {
 // Items
 // --------------------------------------------------------------------------
 
-const ITEM_WITH_RELATIONS = '*, topic:topics(id,name_en,name_vi,color), item_tags(tag:tags(id,name))';
+// Explicit column list: `*` would drag the extracted body (up to 900 kB per row)
+// into every list and detail view.
+const ITEM_COLUMNS = [
+  'id', 'title', 'title_alt', 'lang', 'kind', 'status', 'authors', 'source', 'url',
+  'file_path', 'year', 'topic_id', 'rating', 'summary', 'takeaways', 'learned_on',
+  'created_at', 'updated_at', 'keywords', 'content_pages', 'content_method', 'extracted_at',
+].join(', ');
+
+const ITEM_WITH_RELATIONS =
+  `${ITEM_COLUMNS}, topic:topics(id,name_en,name_vi,color), item_tags(tag:tags(id,name))`;
 
 /**
  * Filtered, sorted, paginated list.
@@ -187,6 +196,42 @@ export async function listItemOptions() {
   return unwrapList(await supabase.from('items').select('id, title, title_alt').order('title'));
 }
 
+// --------------------------------------------------------------------------
+// Extracted document text
+// --------------------------------------------------------------------------
+
+/** Items that have an attachment but no extracted text yet. */
+export async function itemsAwaitingExtraction() {
+  return unwrapList(
+    await supabase
+      .from('items')
+      .select('id, title, file_path, topic_id, summary')
+      .not('file_path', 'is', null)
+      .is('content', null)
+      .order('title')
+  );
+}
+
+/**
+ * Store the text pulled out of an attachment plus what we derived from it.
+ * An existing summary is never overwritten - a hand-written one outranks ours.
+ */
+export async function saveExtraction(itemId, { content, keywords, pages, method, summary }) {
+  const patch = {
+    content,
+    keywords,
+    content_pages: pages ?? null,
+    content_method: method ?? null,
+    extracted_at: new Date().toISOString(),
+  };
+  if (summary) patch.summary = summary;
+  return unwrap(await supabase.from('items').update(patch).eq('id', itemId).select('id').single());
+}
+
+export async function keywordCounts(limit = 40) {
+  return unwrapList(await supabase.rpc('keyword_counts', { lim: limit }));
+}
+
 /** Collapse the nested item_tags shape into a plain `tags` array. */
 function flattenItem(row) {
   if (!row) return row;
@@ -207,6 +252,8 @@ export async function searchItems(query, { limit = 50, offset = 0 } = {}) {
   const q = String(query ?? '').trim();
   if (!q) return { rows: [], mode: 'empty' };
 
+  // The RPC searches titles, authors, summaries and extracted document text,
+  // and returns a highlighted snippet from whichever matched.
   const { data, error } = await supabase.rpc('search_items', { q, lim: limit, off: offset });
   if (!error && data?.length) return { rows: data, mode: 'fts' };
 

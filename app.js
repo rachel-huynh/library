@@ -221,6 +221,10 @@ registerScreen('item', async (mount, route) => {
       },
       {
         itemOptions: itemOptions.map((option) => ({ id: option.id, title: itemTitle(option) })),
+        onKeyword: (word) => {
+          searchState.query = word;
+          navigate('/search');
+        },
         onAddNote: async (note) => {
           await db.createNote({ ...note, item_id: id });
           refresh();

@@ -1,0 +1,7 @@
+# Temporary file from a local extraction test - safe to delete
+__extract-test.pdf
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store

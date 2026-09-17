@@ -191,6 +191,34 @@ export function highlight(text, query) {
   return fragment;
 }
 
+/**
+ * Render a ts_headline snippet. Postgres marks hits with << >> rather than HTML,
+ * so the text is never injected as markup.
+ */
+export function snippetNode(snippet) {
+  const fragment = document.createDocumentFragment();
+  const text = String(snippet ?? '');
+  if (!text) return fragment;
+
+  const parts = text.split(/<<|>>/);
+  parts.forEach((part, index) => {
+    if (!part) return;
+    // Odd indexes sit between a << and its >>, so they are the matched terms.
+    fragment.append(index % 2 ? el('mark', {}, part) : document.createTextNode(part));
+  });
+  return fragment;
+}
+
+/** Keyword chips derived from the document body. */
+export function keywordChips(keywords, onSelect) {
+  if (!keywords?.length) return null;
+  return el('div', { class: 'row tag-chips keyword-chips' },
+    keywords.map((word) =>
+      onSelect
+        ? el('button', { type: 'button', class: 'badge keyword', onClick: () => onSelect(word) }, word)
+        : el('span', { class: 'badge keyword' }, word)));
+}
+
 export function excerpt(text, max = 180) {
   const value = String(text ?? '').replace(/\s+/g, ' ').trim();
   return value.length > max ? `${value.slice(0, max - 1)}…` : value;
@@ -298,7 +326,14 @@ export function itemsCards(rows, { query = '', topicsById = new Map() } = {}) {
         topicName(item.topic ?? topicsById.get(item.topic_id))
           ? el('p', { class: 'small muted' }, topicName(item.topic ?? topicsById.get(item.topic_id)))
           : null,
-        item.summary ? el('p', { class: 'small' }, highlight(excerpt(item.summary), query)) : null,
+        // A search hit carries its own snippet from the document body; otherwise
+        // fall back to the summary.
+        item.snippet
+          ? el('p', { class: 'small snippet' }, snippetNode(item.snippet))
+          : item.summary
+            ? el('p', { class: 'small' }, highlight(excerpt(item.summary), query))
+            : null,
+        item.file_path && item.snippet ? el('span', { class: 'badge tiny' }, t('search.inDocument')) : null,
         itemTagChips(item)
       )
     )
@@ -563,6 +598,16 @@ export function itemDetail({ item, notes, links, breadcrumb, fileUrl }, handlers
         metaRow('item.tags', item.tags?.length ? el('span', { class: 'row tag-chips' }, item.tags.map((tag) => el('span', { class: 'badge' }, `#${tag.name}`))) : null)
       )
     ),
+
+    item.keywords?.length
+      ? el('section', { class: 'card' },
+          el('h2', {}, t('item.keywords')),
+          keywordChips(item.keywords, handlers.onKeyword),
+          item.content_method
+            ? el('p', { class: 'small muted' },
+                t('item.extractedFrom', { pages: item.content_pages ?? '?', method: t(`item.method.${item.content_method}`) }))
+            : null)
+      : null,
 
     item.summary ? el('section', { class: 'card' }, el('h2', {}, t('item.summary')), el('p', { class: 'prose' }, item.summary)) : null,
     item.takeaways ? el('section', { class: 'card' }, el('h2', {}, t('item.takeaways')), el('p', { class: 'prose' }, item.takeaways)) : null,

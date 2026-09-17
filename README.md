@@ -139,3 +139,27 @@ uploading each attachment straight from your machine to Supabase Storage.
 - Excluded deliberately: the Anaconda installer (software, not material), two PayPal receipts,
   and duplicate copies — byte-identical files and personalised reprints of the same reading are
   catalogued once.
+
+## Searchable document content
+
+`supabase/migration-content.sql` adds `items.content`, `items.keywords` and folds the document
+body into the full-text index. Run it in the SQL Editor after `schema.sql`.
+
+The import page then reads each PDF locally and writes back:
+
+- **content** — the full text, indexed at weight D so title and author matches still rank above
+  a passing mention in the body.
+- **keywords** — top terms by tf-idf across the whole batch, so words common to every eCornell
+  PDF ("hotel", "revenue") sink and the distinctive ones rise. Shown as *Key topics* on the item;
+  clicking one searches for it.
+- **summary** — an extractive summary: the highest-scoring sentences in document order, with
+  cover-page and copyright boilerplate filtered out. A summary you wrote yourself is never
+  overwritten.
+
+Extraction reads the PDF's own text layer via pdf.js (about a second for a 5-page file). **OCR**
+(Tesseract.js, English + Vietnamese) is a per-page fallback for scans only — it downloads a
+~15 MB engine and takes seconds per page, so it is off by default.
+
+Search results show a snippet from wherever the hit landed, with matches marked. Snippets are
+generated from the unaccented text, so a Vietnamese snippet comes back without tone marks; the
+highlighting is still correct.

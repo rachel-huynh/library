@@ -881,3 +881,18 @@ a.stat-tile:hover { text-decoration: none; border-color: var(--accent); }
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+/* Extracted-content affordances */
+.snippet { color: var(--text-muted); }
+.snippet mark { color: var(--text); }
+.keyword-chips { margin-top: 2px; }
+.badge.keyword {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: transparent;
+  font: inherit;
+  font-size: .75rem;
+  cursor: pointer;
+}
+button.badge.keyword:hover { filter: brightness(1.08); text-decoration: underline; }
+.badge.tiny { font-size: .68rem; opacity: .8; }

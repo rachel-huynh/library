@@ -3,6 +3,7 @@
 // Idempotent - an item already present (same title + topic) is skipped, so re-running is safe.
 
 import * as db from './db.js';
+import { extractPdfText, buildDocumentFrequency, extractKeywords, summarise, disposeOcr } from './extract-text.js';
 
 const $ = (sel) => document.querySelector(sel);
 const logEl = $('#log');
@@ -203,12 +204,109 @@ async function runImport() {
 
     log('');
     log(`Done. ${created} ${dryRun ? 'would be added' : 'added'}, ${skipped} already present, ${failed} failed.`);
+
+    if ($('#extract').checked) await runExtraction(dryRun);
+
     if (dryRun) log('Untick "Dry run" and press Start import to write for real.');
   } catch (error) {
     log(`Import stopped: ${error.message}`, 'err');
   } finally {
     runBtn.disabled = false;
   }
+}
+
+// --------------------------------------------------------------------------
+// Text extraction, keywords, summary
+// --------------------------------------------------------------------------
+
+/**
+ * Reads every PDF still lacking extracted text. Files come from the folder the
+ * user picked, so nothing is downloaded back out of Storage.
+ */
+async function runExtraction(dryRun) {
+  const ocr = $('#ocr').checked;
+  log('');
+  log(`Extracting text${ocr ? ' (OCR fallback on - scanned pages will be slow)' : ''}...`);
+
+  const pending = await db.itemsAwaitingExtraction();
+  if (!pending.length) {
+    log('Nothing to extract - every attachment already has text.');
+    return;
+  }
+
+  // Match library rows back to the picked files through the manifest.
+  const pathByTitle = new Map(manifest.items.map((entry) => [entry.title.toLowerCase(), entry.path]));
+  const jobs = [];
+  for (const item of pending) {
+    const path = pathByTitle.get(item.title.toLowerCase());
+    const file = path ? picked.get(path) : null;
+    if (!file) {
+      log(`no local file for "${item.title}" - skipped`, 'skip');
+      continue;
+    }
+    if (!file.name.toLowerCase().endsWith('.pdf')) continue;
+    jobs.push({ item, file });
+  }
+  log(`${jobs.length} PDFs to read.`);
+
+  // Pass 1: pull the text out.
+  const texts = [];
+  let index = 0;
+  for (const job of jobs) {
+    index += 1;
+    setProgress(index, jobs.length, `reading ${job.item.title}`);
+    try {
+      const result = await extractPdfText(job.file, {
+        ocr,
+        onProgress: (page, total, note) => {
+          if (note) setProgress(index, jobs.length, `${job.item.title} - ${note}`);
+          else if (total > 12) setProgress(index, jobs.length, `${job.item.title} - page ${page}/${total}`);
+        },
+      });
+      job.result = result;
+      texts.push(result.text);
+      log(`read "${job.item.title}" - ${result.pages} pages, ${result.text.length.toLocaleString()} chars, ${result.method}`);
+    } catch (error) {
+      job.error = error;
+      log(`could not read "${job.item.title}": ${error.message}`, 'err');
+    }
+  }
+
+  // Pass 2: keywords need the whole batch, so that words common to every
+  // eCornell PDF score low and the distinctive ones rise.
+  const stats = buildDocumentFrequency(texts);
+  let written = 0;
+
+  index = 0;
+  for (const job of jobs) {
+    index += 1;
+    if (!job.result || !job.result.text) continue;
+    setProgress(index, jobs.length, `summarising ${job.item.title}`);
+
+    const keywords = extractKeywords(job.result.text, stats, 12);
+    const summary = job.item.summary ? null : summarise(job.result.text, keywords);
+
+    if (dryRun) {
+      log(`would tag "${job.item.title}": ${keywords.slice(0, 6).join(', ')}`, 'dry');
+      continue;
+    }
+    try {
+      await db.saveExtraction(job.item.id, {
+        content: job.result.text,
+        keywords,
+        pages: job.result.pages,
+        method: job.result.method === 'empty' ? null : job.result.method,
+        summary,
+      });
+      written += 1;
+      log(`indexed "${job.item.title}" - ${keywords.slice(0, 6).join(', ')}`, 'ok');
+    } catch (error) {
+      log(`could not save "${job.item.title}": ${error.message}`, 'err');
+    }
+  }
+
+  await disposeOcr();
+  log(`Extraction done. ${dryRun ? jobs.length + ' would be indexed' : written + ' indexed'}.`);
 }
 
 $('#run').addEventListener('click', runImport);

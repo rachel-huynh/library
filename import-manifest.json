@@ -220,6 +220,14 @@
                        "name_vi":  "Luật đấu thầu"
                    },
                    {
+                       "slug":  "personal-notes",
+                       "color":  "#0f7b8a",
+                       "sort":  10,
+                       "name_en":  "My Notes",
+                       "parent":  null,
+                       "name_vi":  "Ghi chú của tôi"
+                   },
+                   {
                        "slug":  "productivity",
                        "color":  "#555f6e",
                        "sort":  10,
@@ -306,7 +314,7 @@
                   },
                   {
                       "path":  "Note taking.url",
-                      "title":  "Note-taking reference",
+                      "title":  "OneNote notebook (work, SharePoint)",
                       "kind":  "other",
                       "topic":  "productivity",
                       "lang":  "en",
