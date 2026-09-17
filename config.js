@@ -5,6 +5,10 @@
 export const SUPABASE_URL = 'https://pyfwkojzpmpsguhlkeyr.supabase.co';
 export const SUPABASE_ANON_KEY = 'sb_publishable_bos37zusS4f_3KfoRTiWnQ_UkHDKhnu';
 
+// Build stamp. Bumped on each deploy so you can tell which code the browser is
+// actually running - GitHub Pages caches modules for 10 minutes after a push.
+export const BUILD = '2026-09-17.1';
+
 // Storage bucket created by supabase/schema.sql.
 export const STORAGE_BUCKET = 'library';
 

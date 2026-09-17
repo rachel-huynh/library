@@ -2,7 +2,7 @@
 // language switching, keyboard shortcuts, data fetching, and event wiring.
 // All DOM construction lives in ui.js; all Supabase access lives in db.js.
 
-import { SUPABASE_URL, SUPABASE_ANON_KEY, PAGE_SIZE } from './config.js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY, PAGE_SIZE, BUILD } from './config.js';
 import * as db from './db.js';
 import { t, getLang, setLang, onLangChange, applyTranslations, formatMonth } from './i18n.js';
 import { radialMindmap, connectionGraph } from './mindmap.js';
@@ -589,6 +589,7 @@ function onSession(session) {
 // --------------------------------------------------------------------------
 
 async function boot() {
+  console.info(`Knowledge Library build ${BUILD}`);
   wireLanguage();
   wireAuthForm();
   wireShortcuts();

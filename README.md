@@ -187,3 +187,13 @@ extracted keywords — until you have run the extraction, that view will be empt
 
 Layouts are computed rather than force-simulated, so the same data always draws the same
 picture and you can see what actually changed between visits.
+
+## After every deploy: hard refresh
+
+GitHub Pages serves scripts with `Cache-Control: max-age=600`, so for about ten minutes after a
+push your browser keeps running the previous version of the JavaScript — even though the files
+on the server have changed. A stale module can hang the page with no error in the console.
+
+Press **Ctrl+F5** (Ctrl+Shift+R) after pushing. `config.js` carries a `BUILD` stamp that is
+logged to the console on boot and shown on the import page, so you can always tell which version
+the browser is actually running.

@@ -3,6 +3,7 @@
 // Idempotent - an item already present (same title + topic) is skipped, so re-running is safe.
 
 import * as db from './db.js';
+import { BUILD } from './config.js';
 import { extractPdfText, buildDocumentFrequency, extractKeywords, summarise, disposeOcr } from './extract-text.js';
 
 const $ = (sel) => document.querySelector(sel);
@@ -54,7 +55,9 @@ async function init() {
       session
         ? `Signed in as ${session.user.email}.`
         : 'Not signed in. Open <a href="courses.html">the app</a>, sign in, then come back to this page.'
-    }</p>`;
+    }</p>
+    <p class="small muted">Build ${BUILD}. If this page ever hangs on "Loading", press Ctrl+F5 &mdash;
+    GitHub Pages caches scripts for 10 minutes after a push.</p>`;
 
   if (session) $('#run').disabled = false;
 }
