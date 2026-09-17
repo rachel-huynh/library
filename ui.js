@@ -391,30 +391,32 @@ export function libraryFilters({ topics, tags, state, onChange, onClear }) {
       checked: state.filters.includeSubtopics !== false,
       onChange: (e) => patchFilters({ includeSubtopics: e.target.checked }),
     }),
-    el('span', {}, t('item.topic') + ' +')
+    el('span', {}, t('library.includeSubtopics'))
   );
+
+  const chipColumn = (labelKey, values, selected, labelFn, key) =>
+    el('div', { class: 'chip-column' },
+      el('span', { class: 'field-label' }, t(labelKey)),
+      chipGroup(values, selected ?? [], labelFn, (value) => toggle(key, value)));
 
   return el(
     'section',
     { class: 'card filters' },
     el('div', { class: 'filters-grid' },
-      labelledField('item.topic', el('div', { class: 'row' }, topicSelect, subtopicToggle)),
+      labelledField('item.topic', topicSelect),
       labelledField('item.tags', tagSelect),
       labelledField('item.year', yearInput),
       labelledField('library.minRating', ratingSelect),
       labelledField('library.sort', sortSelect)
     ),
+    subtopicToggle,
     el('div', { class: 'filters-chips' },
-      el('div', {}, el('span', { class: 'field-label' }, t('item.kind')),
-        chipGroup(KINDS, state.filters.kinds ?? [], kindLabel, (v) => toggle('kinds', v))),
-      el('div', {}, el('span', { class: 'field-label' }, t('item.status')),
-        chipGroup(STATUSES, state.filters.statuses ?? [], statusLabel, (v) => toggle('statuses', v))),
-      el('div', {}, el('span', { class: 'field-label' }, t('item.lang')),
-        chipGroup(LANGS, state.filters.langs ?? [], langLabel, (v) => toggle('langs', v)))
+      chipColumn('item.kind', KINDS, state.filters.kinds, kindLabel, 'kinds'),
+      chipColumn('item.status', STATUSES, state.filters.statuses, statusLabel, 'statuses'),
+      chipColumn('item.lang', LANGS, state.filters.langs, langLabel, 'langs')
     ),
-    el('div', { class: 'row' },
+    el('div', { class: 'filters-actions' },
       el('button', { type: 'button', class: 'btn small', onClick: onClear }, t('common.clear')),
-      el('span', { class: 'spacer' }),
       el('div', { class: 'view-toggle' },
         el('button', { type: 'button', class: 'btn small', 'aria-pressed': String(state.view !== 'cards'), onClick: () => patch({ view: 'table' }) }, t('library.view.table')),
         el('button', { type: 'button', class: 'btn small', 'aria-pressed': String(state.view === 'cards'), onClick: () => patch({ view: 'cards' }) }, t('library.view.cards'))

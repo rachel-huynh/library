@@ -98,6 +98,7 @@ const strings = {
     'library.view.table': 'Table',
     'library.view.cards': 'Cards',
     'library.minRating': 'Minimum rating',
+    'library.includeSubtopics': 'Include subtopics',
     'library.empty': 'No items match these filters.',
 
     'search.title': 'Search',
@@ -235,6 +236,7 @@ const strings = {
     'library.view.table': 'Bảng',
     'library.view.cards': 'Thẻ',
     'library.minRating': 'Đánh giá tối thiểu',
+    'library.includeSubtopics': 'Gồm cả chủ đề con',
     'library.empty': 'Không có tài liệu nào khớp bộ lọc.',
 
     'search.title': 'Tìm kiếm',

@@ -34,39 +34,59 @@
 
   <!-- App ------------------------------------------------------------------>
   <div id="app" hidden>
-    <header class="app-header">
-      <a class="brand" href="#/dashboard">
-        <span class="brand-mark" aria-hidden="true">&#128218;</span>
-        <span data-i18n="app.name"></span>
-      </a>
+    <div class="app-shell">
 
-      <nav class="main-nav" data-i18n-aria-label="app.name">
-        <a class="nav-link" href="#/dashboard" data-route="dashboard" data-i18n="nav.dashboard"></a>
-        <a class="nav-link" href="#/library"   data-route="library"   data-i18n="nav.library"></a>
-        <a class="nav-link" href="#/search"    data-route="search"    data-i18n="nav.search"></a>
-      </nav>
+      <aside class="sidebar">
+        <a class="brand" href="#/dashboard">
+          <span class="brand-mark" aria-hidden="true">&#128218;</span>
+          <span data-i18n="app.name"></span>
+        </a>
 
-      <div class="header-actions">
-        <a class="btn primary" href="#/new" data-i18n="nav.add"></a>
-        <div class="lang-switch" role="group" data-i18n-aria-label="nav.language">
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-          <button type="button" class="lang-btn" data-lang="vi">VI</button>
+        <nav class="main-nav" data-i18n-aria-label="app.name">
+          <a class="nav-link" href="#/dashboard" data-route="dashboard">
+            <svg class="nav-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1" /><rect x="9" y="1.5" width="5.5" height="5.5" rx="1" />
+              <rect x="1.5" y="9" width="5.5" height="5.5" rx="1" /><rect x="9" y="9" width="5.5" height="5.5" rx="1" />
+            </svg>
+            <span data-i18n="nav.dashboard"></span>
+          </a>
+          <a class="nav-link" href="#/library" data-route="library">
+            <svg class="nav-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <rect x="1.5" y="2" width="3.5" height="12" rx="1" /><rect x="6.25" y="2" width="3.5" height="12" rx="1" />
+              <rect x="11" y="3.4" width="3.5" height="10.6" rx="1" transform="rotate(-12 12.75 8.7)" />
+            </svg>
+            <span data-i18n="nav.library"></span>
+          </a>
+          <a class="nav-link" href="#/search" data-route="search">
+            <svg class="nav-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <circle cx="7" cy="7" r="4.75" /><path d="M10.6 10.6 L14 14" />
+            </svg>
+            <span data-i18n="nav.search"></span>
+          </a>
+        </nav>
+
+        <a class="btn primary nav-add" href="#/new" data-i18n="nav.add"></a>
+
+        <div class="sidebar-foot">
+          <div class="shortcut-hints">
+            <span class="muted"><kbd>/</kbd> <span data-i18n="shortcut.search"></span></span>
+            <span class="muted"><kbd>n</kbd> <span data-i18n="shortcut.new"></span></span>
+            <span class="muted"><kbd>Esc</kbd> <span data-i18n="shortcut.close"></span></span>
+          </div>
+          <div class="sidebar-account">
+            <div class="lang-switch" role="group" data-i18n-aria-label="nav.language">
+              <button type="button" class="lang-btn" data-lang="en">EN</button>
+              <button type="button" class="lang-btn" data-lang="vi">VI</button>
+            </div>
+            <button type="button" class="btn ghost" id="sign-out" data-i18n="nav.signOut"></button>
+          </div>
         </div>
-        <button type="button" class="btn ghost" id="sign-out" data-i18n="nav.signOut"></button>
-      </div>
-    </header>
+      </aside>
 
-    <!-- Screens are rendered into this node by app.js / ui.js -------------->
-    <main id="screen" class="screen" tabindex="-1"></main>
+      <!-- Screens are rendered into this node by app.js / ui.js ------------>
+      <main id="screen" class="screen" tabindex="-1"></main>
 
-    <footer class="app-footer">
-      <span class="muted">
-        <span data-i18n="shortcut.title"></span>:
-        <kbd>/</kbd> <span data-i18n="shortcut.search"></span> &middot;
-        <kbd>n</kbd> <span data-i18n="shortcut.new"></span> &middot;
-        <kbd>Esc</kbd> <span data-i18n="shortcut.close"></span>
-      </span>
-    </footer>
+    </div>
   </div>
 
   <!-- Modal host ----------------------------------------------------------->
