@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Knowledge Library</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#128218;</text></svg>" />
+</head>
+<body>
+  <!-- Boot / session check ------------------------------------------------->
+  <div id="boot" class="centered-pane">
+    <p class="muted" data-i18n="auth.checking">Checking your session...</p>
+  </div>
+
+  <!-- Sign in -------------------------------------------------------------->
+  <div id="auth" class="centered-pane" hidden>
+    <form id="auth-form" class="card auth-card" novalidate>
+      <h1 class="brand"><span class="brand-mark" aria-hidden="true">&#128218;</span> <span data-i18n="app.name"></span></h1>
+      <p class="muted" data-i18n="auth.intro"></p>
+      <label class="field">
+        <span data-i18n="auth.email"></span>
+        <input type="email" id="auth-email" name="email" autocomplete="email" required />
+      </label>
+      <button type="submit" class="btn primary" id="auth-submit" data-i18n="auth.send"></button>
+      <p class="inline-status" id="auth-status" role="status" aria-live="polite"></p>
+      <div class="lang-switch" role="group" data-i18n-aria-label="nav.language">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="vi">VI</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- App ------------------------------------------------------------------>
+  <div id="app" hidden>
+    <header class="app-header">
+      <a class="brand" href="#/dashboard">
+        <span class="brand-mark" aria-hidden="true">&#128218;</span>
+        <span data-i18n="app.name"></span>
+      </a>
+
+      <nav class="main-nav" data-i18n-aria-label="app.name">
+        <a class="nav-link" href="#/dashboard" data-route="dashboard" data-i18n="nav.dashboard"></a>
+        <a class="nav-link" href="#/library"   data-route="library"   data-i18n="nav.library"></a>
+        <a class="nav-link" href="#/search"    data-route="search"    data-i18n="nav.search"></a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn primary" href="#/new" data-i18n="nav.add"></a>
+        <div class="lang-switch" role="group" data-i18n-aria-label="nav.language">
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="vi">VI</button>
+        </div>
+        <button type="button" class="btn ghost" id="sign-out" data-i18n="nav.signOut"></button>
+      </div>
+    </header>
+
+    <!-- Screens are rendered into this node by app.js / ui.js -------------->
+    <main id="screen" class="screen" tabindex="-1"></main>
+
+    <footer class="app-footer">
+      <span class="muted">
+        <span data-i18n="shortcut.title"></span>:
+        <kbd>/</kbd> <span data-i18n="shortcut.search"></span> &middot;
+        <kbd>n</kbd> <span data-i18n="shortcut.new"></span> &middot;
+        <kbd>Esc</kbd> <span data-i18n="shortcut.close"></span>
+      </span>
+    </footer>
+  </div>
+
+  <!-- Modal host ----------------------------------------------------------->
+  <div id="modal-root" class="modal-root" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" tabindex="-1">
+      <button type="button" class="modal-close" data-modal-close data-i18n-aria-label="common.close">&times;</button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Transient messages --------------------------------------------------->
+  <div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
