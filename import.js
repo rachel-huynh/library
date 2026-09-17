@@ -30,9 +30,11 @@ function setProgress(done, total, label) {
 async function init() {
   const summary = $('#summary');
   try {
-    manifest = await (await fetch('./import-manifest.json', { cache: 'no-store' })).json();
+    const response = await fetch('./import-manifest.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`import-manifest.json returned ${response.status}`);
+    manifest = await response.json();
   } catch (error) {
-    summary.innerHTML = `<div class="error-box">Could not load import-manifest.json: ${error.message}</div>`;
+    summary.innerHTML = `<div class="error-box">Could not load the catalogue: ${error.message}</div>`;
     return;
   }
 
@@ -205,7 +207,15 @@ async function runImport() {
     log('');
     log(`Done. ${created} ${dryRun ? 'would be added' : 'added'}, ${skipped} already present, ${failed} failed.`);
 
-    if ($('#extract').checked) await runExtraction(dryRun);
+    // Extraction depends on a CDN, so its failure must not read as an import failure.
+    if ($('#extract').checked) {
+      try {
+        await runExtraction(dryRun);
+      } catch (error) {
+        log(`Text extraction failed: ${error.message}`, 'err');
+        log('The import itself is unaffected. Re-run later with only "Read PDF text" ticked.');
+      }
+    }
 
     if (dryRun) log('Untick "Dry run" and press Start import to write for real.');
   } catch (error) {
@@ -311,4 +321,8 @@ async function runExtraction(dryRun) {
 
 $('#run').addEventListener('click', runImport);
 
-init();
+// A blank "Loading..." tells the user nothing. Anything unexpected surfaces here.
+init().catch((error) => {
+  $('#summary').innerHTML = `<div class="error-box">Import page failed to start: ${error.message}</div>`;
+  console.error(error);
+});

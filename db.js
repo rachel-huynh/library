@@ -232,6 +232,43 @@ export async function keywordCounts(limit = 40) {
   return unwrapList(await supabase.rpc('keyword_counts', { lim: limit }));
 }
 
+// --------------------------------------------------------------------------
+// Knowledge graph edges
+// --------------------------------------------------------------------------
+
+/**
+ * Topic-to-topic edges: shared extracted vocabulary, plus any explicit
+ * "related material" links rolled up from the items underneath.
+ * Returns [] rather than throwing when the graph migration has not been run.
+ */
+export async function topicGraphLinks({ minShared = 3 } = {}) {
+  const [shared, relations] = await Promise.all([
+    supabase.rpc('topic_links', { min_shared: minShared }),
+    supabase.rpc('topic_relation_links'),
+  ]);
+  if (shared.error && relations.error) return [];
+
+  const edges = new Map();
+  const key = (a, b) => [a, b].sort().join('|');
+
+  for (const row of shared.data ?? []) {
+    edges.set(key(row.source, row.target), {
+      source: row.source,
+      target: row.target,
+      shared: row.shared,
+      terms: row.terms ?? [],
+      relations: 0,
+    });
+  }
+  for (const row of relations.data ?? []) {
+    const id = key(row.source, row.target);
+    const existing = edges.get(id);
+    if (existing) existing.relations = row.relations;
+    else edges.set(id, { source: row.source, target: row.target, shared: 0, terms: [], relations: row.relations });
+  }
+  return [...edges.values()];
+}
+
 /** Collapse the nested item_tags shape into a plain `tags` array. */
 function flattenItem(row) {
   if (!row) return row;

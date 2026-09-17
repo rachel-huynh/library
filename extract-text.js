@@ -4,9 +4,57 @@
 // milliseconds. OCR is the fallback for scans only: it is orders of magnitude
 // slower, so it runs per page and only where the text layer came back empty.
 
-import * as pdfjs from 'https://esm.sh/pdfjs-dist@4.7.76/build/pdf.mjs';
+// Nothing is imported from a CDN at module load: a blocked or slow CDN would
+// stop this module evaluating at all, which silently breaks the page that
+// imports it. Everything heavy loads on first use, with a mirror to fall back on.
 
-pdfjs.GlobalWorkerOptions.workerSrc = 'https://esm.sh/pdfjs-dist@4.7.76/build/pdf.worker.mjs';
+// jsdelivr first: it serves pdf.js's own prebuilt ESM straight from the package.
+// esm.sh has to transform the package on first request, which can stall for a
+// minute or more on a cold cache - that is what hung the page originally.
+const PDFJS_SOURCES = [
+  {
+    lib: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/build/pdf.min.mjs',
+    worker: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/build/pdf.worker.min.mjs',
+  },
+  {
+    lib: 'https://esm.sh/pdfjs-dist@4.7.76/build/pdf.mjs',
+    worker: 'https://esm.sh/pdfjs-dist@4.7.76/build/pdf.worker.mjs',
+  },
+];
+
+let pdfjsPromise = null;
+
+async function getPdfjs(onStatus) {
+  if (pdfjsPromise) return pdfjsPromise;
+  pdfjsPromise = (async () => {
+    const failures = [];
+    for (const source of PDFJS_SOURCES) {
+      try {
+        onStatus?.(`loading PDF engine from ${new URL(source.lib).hostname}`);
+        const lib = await import(/* @vite-ignore */ source.lib);
+        lib.GlobalWorkerOptions.workerSrc = source.worker;
+        return lib;
+      } catch (error) {
+        failures.push(`${new URL(source.lib).hostname}: ${error.message}`);
+      }
+    }
+    pdfjsPromise = null; // let a later attempt retry
+    throw new Error(
+      `Could not load the PDF engine from any CDN. Check whether your network blocks them. Tried - ${failures.join('; ')}`
+    );
+  })();
+  return pdfjsPromise;
+}
+
+/** True when the PDF engine is reachable; used to warn before a long run. */
+export async function pdfEngineAvailable() {
+  try {
+    await getPdfjs();
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 let tesseractWorker = null;
 
@@ -39,6 +87,7 @@ function fixDropCaps(text) {
  * @returns {{ text: string, pages: number, method: 'text-layer'|'ocr'|'mixed'|'empty' }}
  */
 export async function extractPdfText(file, { ocr = false, maxPages = 400, onProgress } = {}) {
+  const pdfjs = await getPdfjs((note) => onProgress?.(null, null, note));
   const data = new Uint8Array(await file.arrayBuffer());
   const doc = await pdfjs.getDocument({ data, disableFontFace: true }).promise;
   const pageCount = Math.min(doc.numPages, maxPages);

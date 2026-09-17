@@ -1,5 +1,5 @@
 # Temporary file from a local extraction test - safe to delete
-__extract-test.pdf
+__*.pdf
 
 # OS / editor noise
 Thumbs.db

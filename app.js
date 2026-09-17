@@ -5,6 +5,7 @@
 import { SUPABASE_URL, SUPABASE_ANON_KEY, PAGE_SIZE } from './config.js';
 import * as db from './db.js';
 import { t, getLang, setLang, onLangChange, applyTranslations, formatMonth } from './i18n.js';
+import { radialMindmap, connectionGraph } from './mindmap.js';
 import {
   $, $$, el, clear, loadingNode, errorNode, toast, closeModal, isModalOpen,
   libraryFilters, pagination, itemList, itemDetail, itemForm, searchScreen,
@@ -338,14 +339,17 @@ function kindBuckets(facets) {
     .sort((a, b) => b.value - a.value);
 }
 
+let mapView = 'mindmap'; // tree | mindmap | graph
+
 registerScreen('dashboard', async (mount) => {
-  const [stats, topics, counts, facets, learning, stale] = await Promise.all([
+  const [stats, topics, counts, facets, learning, stale, graphLinks] = await Promise.all([
     db.dashboardStats(),
     getTopics(),
     db.topicCounts(),
     db.itemFacets(),
     db.currentlyLearning(8),
     db.leastRecentlyRevisited(8),
+    db.topicGraphLinks().catch(() => []),
   ]);
 
   const topicsById = topicIndex(topics);
@@ -383,26 +387,62 @@ registerScreen('dashboard', async (mount) => {
       })
     );
 
+  // The knowledge map has three views over the same tree; remembered across renders.
+  const mapBody = el('div', { class: 'map-body' });
+
+  const drawMap = () => {
+    clear(mapBody);
+    if (mapView === 'mindmap') {
+      mapBody.append(radialMindmap(topics, countsById, { onSelect: openTopic }) ?? el('p', { class: 'muted small' }, t('dash.noTopics')));
+    } else if (mapView === 'graph') {
+      const graph = connectionGraph(topics, countsById, graphLinks, { onSelect: openTopic });
+      mapBody.append(
+        graph ?? el('div', { class: 'empty-state' }, t('dash.graphEmpty')),
+        graph ? el('p', { class: 'small muted' }, t('dash.graphHint')) : null
+      );
+    } else {
+      mapBody.append(topicTree(topics, countsById, openTopic));
+    }
+  };
+
+  const viewButton = (view, labelKey) =>
+    el('button', {
+      type: 'button',
+      class: 'btn small',
+      'aria-pressed': String(mapView === view),
+      onClick: () => {
+        mapView = view;
+        drawMap();
+        $$('.map-views .btn').forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.view === mapView)));
+      },
+      dataset: { view },
+    }, t(labelKey));
+
+  drawMap();
+
   mount.append(
     el('div', { class: 'screen-head' }, el('h1', {}, t('dash.title'))),
     statTiles(stats),
 
+    el('section', { class: 'card knowledge-map' },
+      el('div', { class: 'row' },
+        el('h2', {}, t('dash.topicTree')),
+        el('span', { class: 'spacer' }),
+        el('div', { class: 'view-toggle map-views' },
+          viewButton('tree', 'dash.viewTree'),
+          viewButton('mindmap', 'dash.viewMindmap'),
+          viewButton('graph', 'dash.viewGraph')),
+        el('button', { type: 'button', class: 'btn small', onClick: openTopicManager }, t('topic.manage'))),
+      el('p', { class: 'small muted' }, t('dash.gapsHint')),
+      mapBody),
+
     el('div', { class: 'dash-grid' },
       el('section', { class: 'card' },
-        el('div', { class: 'row' },
-          el('h2', {}, t('dash.topicTree')),
-          el('span', { class: 'spacer' }),
-          el('button', { type: 'button', class: 'btn small', onClick: openTopicManager }, t('topic.manage'))),
-        el('p', { class: 'small muted' }, t('dash.gapsHint')),
-        topicTree(topics, countsById, openTopic)),
-
-      el('div', { class: 'stack' },
-        el('section', { class: 'card' },
-          el('h2', {}, t('dash.byMonth')),
-          columnChart(monthBuckets(facets))),
-        el('section', { class: 'card' },
-          el('h2', {}, t('dash.byKind')),
-          barChart(kindBuckets(facets))))),
+        el('h2', {}, t('dash.byMonth')),
+        columnChart(monthBuckets(facets))),
+      el('section', { class: 'card' },
+        el('h2', {}, t('dash.byKind')),
+        barChart(kindBuckets(facets)))),
 
     el('div', { class: 'dash-grid' },
       el('section', { class: 'card' },

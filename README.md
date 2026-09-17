@@ -163,3 +163,27 @@ Extraction reads the PDF's own text layer via pdf.js (about a second for a 5-pag
 Search results show a snippet from wherever the hit landed, with matches marked. Snippets are
 generated from the unaccented text, so a Vietnamese snippet comes back without tone marks; the
 highlighting is still correct.
+
+## Knowledge map
+
+The dashboard's map has three views over the same topic tree, switched in its header:
+
+- **Tree** — the nested list, with subtree counts. Empty branches dimmed.
+- **Mindmap** — a radial map drawn outward from the library. Node area grows with the square
+  root of the item count; a domain's share of the circle is proportional to how many subtopics
+  it has, so a six-module course is not crushed into the same wedge as an empty folder.
+  Subtopics alternate between two rings so neighbouring labels never collide.
+- **Connections** — the topics on a ring, joined wherever they share extracted key topics.
+  This is the view that shows the archive as one connected body rather than separate folders:
+  *Forecasting* and *Overbooking* are siblings in the tree, but the chord between them is drawn
+  from the vocabulary they actually share. Line thickness is the size of the overlap; an amber
+  line means an explicit "related material" link between items, not just shared words.
+
+Every node is clickable and opens the Library filtered to that branch, and both views are
+keyboard reachable.
+
+Connections need `supabase/migration-graph.sql` (run it after `migration-content.sql`) and
+extracted keywords — until you have run the extraction, that view will be empty.
+
+Layouts are computed rather than force-simulated, so the same data always draws the same
+picture and you can see what actually changed between visits.
