@@ -1,0 +1,1395 @@
+﻿{
+    "generated":  "2026-09-17",
+    "root":  "TRAINING MATERIALS",
+    "maxUploadMb":  50,
+    "topics":  [
+                   {
+                       "slug":  "revenue-management",
+                       "color":  "#3f6fd4",
+                       "sort":  1,
+                       "name_en":  "Revenue Management",
+                       "parent":  null,
+                       "name_vi":  "Quản trị doanh thu"
+                   },
+                   {
+                       "slug":  "rm-introduction",
+                       "color":  "#3f6fd4",
+                       "sort":  1,
+                       "name_en":  "Introduction (SHA531)",
+                       "parent":  "revenue-management",
+                       "name_vi":  "Nhập môn (SHA531)"
+                   },
+                   {
+                       "slug":  "rm-forecasting",
+                       "color":  "#3f6fd4",
+                       "sort":  2,
+                       "name_en":  "Forecasting (SHA532)",
+                       "parent":  "revenue-management",
+                       "name_vi":  "Dự báo (SHA532)"
+                   },
+                   {
+                       "slug":  "rm-pricing",
+                       "color":  "#3f6fd4",
+                       "sort":  3,
+                       "name_en":  "Pricing \u0026 Distribution (SHA533)",
+                       "parent":  "revenue-management",
+                       "name_vi":  "Giá \u0026 Kênh phân phối (SHA533)"
+                   },
+                   {
+                       "slug":  "rm-overbooking",
+                       "color":  "#3f6fd4",
+                       "sort":  4,
+                       "name_en":  "Overbooking (SHA534)",
+                       "parent":  "revenue-management",
+                       "name_vi":  "Overbooking (SHA534)"
+                   },
+                   {
+                       "slug":  "rm-group",
+                       "color":  "#3f6fd4",
+                       "sort":  5,
+                       "name_en":  "Group Business",
+                       "parent":  "revenue-management",
+                       "name_vi":  "Khách đoàn"
+                   },
+                   {
+                       "slug":  "rm-nontraditional",
+                       "color":  "#3f6fd4",
+                       "sort":  6,
+                       "name_en":  "Non-Traditional Applications (SHA535)",
+                       "parent":  "revenue-management",
+                       "name_vi":  "Ứng dụng mở rộng (SHA535)"
+                   },
+                   {
+                       "slug":  "asset-management",
+                       "color":  "#2f7a4f",
+                       "sort":  2,
+                       "name_en":  "Asset Management",
+                       "parent":  null,
+                       "name_vi":  "Quản lý tài sản"
+                   },
+                   {
+                       "slug":  "am-procurement",
+                       "color":  "#2f7a4f",
+                       "sort":  1,
+                       "name_en":  "FF\u0026E Procurement",
+                       "parent":  "asset-management",
+                       "name_vi":  "Mua sắm FF\u0026E"
+                   },
+                   {
+                       "slug":  "programming",
+                       "color":  "#9a6a00",
+                       "sort":  3,
+                       "name_en":  "Programming",
+                       "parent":  null,
+                       "name_vi":  "Lập trình"
+                   },
+                   {
+                       "slug":  "programming-python",
+                       "color":  "#9a6a00",
+                       "sort":  1,
+                       "name_en":  "Python",
+                       "parent":  "programming",
+                       "name_vi":  "Python"
+                   },
+                   {
+                       "slug":  "programming-sql",
+                       "color":  "#9a6a00",
+                       "sort":  2,
+                       "name_en":  "SQL",
+                       "parent":  "programming",
+                       "name_vi":  "SQL"
+                   },
+                   {
+                       "slug":  "programming-html",
+                       "color":  "#9a6a00",
+                       "sort":  3,
+                       "name_en":  "HTML \u0026 Web",
+                       "parent":  "programming",
+                       "name_vi":  "HTML \u0026 Web"
+                   },
+                   {
+                       "slug":  "data-analytics",
+                       "color":  "#b3261e",
+                       "sort":  4,
+                       "name_en":  "Data \u0026 Analytics",
+                       "parent":  null,
+                       "name_vi":  "Dữ liệu \u0026 Phân tích"
+                   },
+                   {
+                       "slug":  "da-powerbi",
+                       "color":  "#b3261e",
+                       "sort":  1,
+                       "name_en":  "Power BI",
+                       "parent":  "data-analytics",
+                       "name_vi":  "Power BI"
+                   },
+                   {
+                       "slug":  "da-excel",
+                       "color":  "#b3261e",
+                       "sort":  2,
+                       "name_en":  "Excel for Professionals",
+                       "parent":  "data-analytics",
+                       "name_vi":  "Excel chuyên nghiệp"
+                   },
+                   {
+                       "slug":  "da-datascience",
+                       "color":  "#b3261e",
+                       "sort":  3,
+                       "name_en":  "Data Science",
+                       "parent":  "data-analytics",
+                       "name_vi":  "Khoa học dữ liệu"
+                   },
+                   {
+                       "slug":  "automation",
+                       "color":  "#6d4fd4",
+                       "sort":  5,
+                       "name_en":  "Automation",
+                       "parent":  null,
+                       "name_vi":  "Tự động hóa"
+                   },
+                   {
+                       "slug":  "automation-rpa",
+                       "color":  "#6d4fd4",
+                       "sort":  1,
+                       "name_en":  "RPA",
+                       "parent":  "automation",
+                       "name_vi":  "RPA"
+                   },
+                   {
+                       "slug":  "automation-powerapps",
+                       "color":  "#6d4fd4",
+                       "sort":  2,
+                       "name_en":  "Power Apps",
+                       "parent":  "automation",
+                       "name_vi":  "Power Apps"
+                   },
+                   {
+                       "slug":  "automation-powerautomate",
+                       "color":  "#6d4fd4",
+                       "sort":  3,
+                       "name_en":  "Power Automate",
+                       "parent":  "automation",
+                       "name_vi":  "Power Automate"
+                   },
+                   {
+                       "slug":  "finance-planning",
+                       "color":  "#0f7b8a",
+                       "sort":  6,
+                       "name_en":  "Finance \u0026 Planning",
+                       "parent":  null,
+                       "name_vi":  "Tài chính \u0026 Kế hoạch"
+                   },
+                   {
+                       "slug":  "fp-budgeting",
+                       "color":  "#0f7b8a",
+                       "sort":  1,
+                       "name_en":  "Budgeting \u0026 Forecasting",
+                       "parent":  "finance-planning",
+                       "name_vi":  "Ngân sách \u0026 Dự báo"
+                   },
+                   {
+                       "slug":  "project-management",
+                       "color":  "#8a5a0f",
+                       "sort":  7,
+                       "name_en":  "Project Management",
+                       "parent":  null,
+                       "name_vi":  "Quản lý dự án"
+                   },
+                   {
+                       "slug":  "quality-control",
+                       "color":  "#8a5a0f",
+                       "sort":  8,
+                       "name_en":  "Quality Control",
+                       "parent":  null,
+                       "name_vi":  "Kiểm soát chất lượng"
+                   },
+                   {
+                       "slug":  "legal",
+                       "color":  "#555f6e",
+                       "sort":  9,
+                       "name_en":  "Legal \u0026 Compliance",
+                       "parent":  null,
+                       "name_vi":  "Pháp lý \u0026 Tuân thủ"
+                   },
+                   {
+                       "slug":  "legal-tender",
+                       "color":  "#555f6e",
+                       "sort":  1,
+                       "name_en":  "Tender Law",
+                       "parent":  "legal",
+                       "name_vi":  "Luật đấu thầu"
+                   },
+                   {
+                       "slug":  "productivity",
+                       "color":  "#555f6e",
+                       "sort":  10,
+                       "name_en":  "Productivity",
+                       "parent":  null,
+                       "name_vi":  "Năng suất"
+                   }
+               ],
+    "items":  [
+                  {
+                      "path":  "Materials - Asset Management \u0026 Business Analysis/Asset Management Materials/Procurement/FFE Procurement Document - Example.xlsx",
+                      "title":  "FF\u0026E Procurement Document (example)",
+                      "kind":  "other",
+                      "topic":  "am-procurement",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template"
+                               ],
+                      "size_mb":  2.15,
+                      "source":  "TRAINING MATERIALS/Materials - Asset Management \u0026 Business Analysis/Asset Management Materials/Procurement/FFE Procurement Document - Example.xlsx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Materials - Asset Management \u0026 Business Analysis/Asset Management Materials/Procurement/FF\u0026E Procurement Process (updated).pdf",
+                      "title":  "FF\u0026E Procurement Process",
+                      "kind":  "paper",
+                      "topic":  "am-procurement",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  0.18,
+                      "source":  "TRAINING MATERIALS/Materials - Asset Management \u0026 Business Analysis/Asset Management Materials/Procurement/FF\u0026E Procurement Process (updated).pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Materials - Asset Management \u0026 Business Analysis/Asset Management Materials/Procurement/FF\u0026E Procurement Workflow (updated).pdf",
+                      "title":  "FF\u0026E Procurement Workflow",
+                      "kind":  "paper",
+                      "topic":  "am-procurement",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  0.13,
+                      "source":  "TRAINING MATERIALS/Materials - Asset Management \u0026 Business Analysis/Asset Management Materials/Procurement/FF\u0026E Procurement Workflow (updated).pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "RPA/RPA10SA11L1/Day 03/Day 03.pdf",
+                      "title":  "RPA Course - Day 03",
+                      "kind":  "paper",
+                      "topic":  "automation-rpa",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  0.91,
+                      "source":  "TRAINING MATERIALS/RPA/RPA10SA11L1/Day 03/Day 03.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Smart Train_Budget, Forecast Training material.pdf",
+                      "title":  "Budget \u0026 Forecast Training Material (Smart Train)",
+                      "kind":  "paper",
+                      "topic":  "fp-budgeting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  239.85,
+                      "source":  "TRAINING MATERIALS/Smart Train_Budget, Forecast Training material.pdf",
+                      "uploadable":  false,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Note taking.url",
+                      "title":  "Note-taking reference",
+                      "kind":  "other",
+                      "topic":  "productivity",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  0,
+                      "source":  "TRAINING MATERIALS/Note taking.url",
+                      "uploadable":  false,
+                      "url_file":  true
+                  },
+                  {
+                      "path":  "HTML/Lo_trinh_hoc_HTML_chinh_sua_co_san.pdf",
+                      "title":  "Lo trinh hoc HTML - chinh sua co san",
+                      "kind":  "note",
+                      "topic":  "programming-html",
+                      "lang":  "vi",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  0.22,
+                      "source":  "TRAINING MATERIALS/HTML/Lo_trinh_hoc_HTML_chinh_sua_co_san.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Python/Lo_trinh_hoc_Python_cho_AI_PowerQuery.pdf",
+                      "title":  "Lo trinh hoc Python cho AI va Power Query",
+                      "kind":  "note",
+                      "topic":  "programming-python",
+                      "lang":  "vi",
+                      "year":  null,
+                      "tags":  [
+
+                               ],
+                      "size_mb":  0.22,
+                      "source":  "TRAINING MATERIALS/Python/Lo_trinh_hoc_Python_cho_AI_PowerQuery.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/Cornell Research Library.url",
+                      "title":  "Cornell Research Library",
+                      "kind":  "other",
+                      "topic":  "revenue-management",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0,
+                      "source":  "TRAINING MATERIALS/Revenue Management/Cornell Research Library.url",
+                      "uploadable":  false,
+                      "url_file":  true
+                  },
+                  {
+                      "path":  "Revenue Management/eCornell Credential - Diu Huynh.pdf",
+                      "title":  "eCornell Credential",
+                      "kind":  "other",
+                      "topic":  "revenue-management",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "certificate",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.35,
+                      "source":  "TRAINING MATERIALS/Revenue Management/eCornell Credential - Diu Huynh.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/Booking curve.xlsx",
+                      "title":  "Booking Curve",
+                      "kind":  "other",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.01,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/Booking curve.xlsx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/sha532_course-transcript.pdf",
+                      "title":  "Course Transcript",
+                      "kind":  "lecture",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  2.6,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/sha532_course-transcript.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/Forecasting and Availability Controls in Hotel Revenue Management - Course Project.pdf",
+                      "title":  "Forecasting and Availability Controls in Hotel Revenue Management Course Project",
+                      "kind":  "note",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "coursework",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.33,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/Forecasting and Availability Controls in Hotel Revenue Management - Course Project.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/sha532_glossary.pdf",
+                      "title":  "Glossary",
+                      "kind":  "note",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.16,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/sha532_glossary.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/Grade-detail.pdf",
+                      "title":  "Grade Detail",
+                      "kind":  "other",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.75,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/Grade-detail.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/Grades.pdf",
+                      "title":  "Grades",
+                      "kind":  "other",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.21,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/Grades.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/2. Forecasting/sha532_tool-guide-to-pickup-forecasting.docx",
+                      "title":  "Guide to Pickup Forecasting",
+                      "kind":  "other",
+                      "topic":  "rm-forecasting",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.14,
+                      "source":  "TRAINING MATERIALS/Revenue Management/2. Forecasting/sha532_tool-guide-to-pickup-forecasting.docx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/5. Group/sha534_accra_forecast.xlsx",
+                      "title":  "Accra Beach Forecast",
+                      "kind":  "other",
+                      "topic":  "rm-group",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "case-study",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.04,
+                      "source":  "TRAINING MATERIALS/Revenue Management/5. Group/sha534_accra_forecast.xlsx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/5. Group/sha534_displacement-template_en-us.xls",
+                      "title":  "Displacement Analysis Template",
+                      "kind":  "other",
+                      "topic":  "rm-group",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.02,
+                      "source":  "TRAINING MATERIALS/Revenue Management/5. Group/sha534_displacement-template_en-us.xls",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/5. Group/sha534_expanded_en-us.xls",
+                      "title":  "Expanded Example",
+                      "kind":  "other",
+                      "topic":  "rm-group",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.03,
+                      "source":  "TRAINING MATERIALS/Revenue Management/5. Group/sha534_expanded_en-us.xls",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/5. Group/sha534_group-forecasting-methods_01.pdf",
+                      "title":  "Group Forecasting Methods",
+                      "kind":  "paper",
+                      "topic":  "rm-group",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.18,
+                      "source":  "TRAINING MATERIALS/Revenue Management/5. Group/sha534_group-forecasting-methods_01.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/5. Group/sha534_4_grp_displ_template.xlsx",
+                      "title":  "Sha534 4 Grp Displ Template",
+                      "kind":  "other",
+                      "topic":  "rm-group",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.04,
+                      "source":  "TRAINING MATERIALS/Revenue Management/5. Group/sha534_4_grp_displ_template.xlsx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/5. Group/sha534_example_en-us.xls",
+                      "title":  "Worked Example",
+                      "kind":  "other",
+                      "topic":  "rm-group",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.02,
+                      "source":  "TRAINING MATERIALS/Revenue Management/5. Group/sha534_example_en-us.xls",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/sha531_225_bstavlblrt_en-us.pdf",
+                      "title":  "Best Available Rate",
+                      "kind":  "paper",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.94,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/sha531_225_bstavlblrt_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/Course-transcript-JVCPLAZA.pdf",
+                      "title":  "Course Transcript",
+                      "kind":  "lecture",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  2.87,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/Course-transcript-JVCPLAZA.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/Final projecy.pdf",
+                      "title":  "Final Project",
+                      "kind":  "paper",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  3.24,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/Final projecy.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/Glossary.pdf",
+                      "title":  "Glossary",
+                      "kind":  "note",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.16,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/Glossary.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/Grade.pdf",
+                      "title":  "Grade",
+                      "kind":  "other",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.75,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/Grade.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/Grades.pdf",
+                      "title":  "Grades",
+                      "kind":  "other",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.17,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/Grades.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/Introduction to Hotel Revenue Management - Course Project.pdf",
+                      "title":  "Introduction to Hotel Revenue Management Course Project",
+                      "kind":  "note",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "coursework",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.38,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/Introduction to Hotel Revenue Management - Course Project.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/sha531_235_revmanageretro_en-us.pdf",
+                      "title":  "Revenue Management Retrospective",
+                      "kind":  "paper",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.83,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/sha531_235_revmanageretro_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/sha531_six-conditions-for-revenue-management.pdf",
+                      "title":  "Six Conditions for Revenue Management",
+                      "kind":  "paper",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.17,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/sha531_six-conditions-for-revenue-management.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/SHA531_991_WishfulThinking_en-us.pdf",
+                      "title":  "Wishful Thinking",
+                      "kind":  "paper",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.81,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/SHA531_991_WishfulThinking_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/1. Introduction/sha531_113_yieldmanagement_en-us.pdf",
+                      "title":  "Yield Management",
+                      "kind":  "paper",
+                      "topic":  "rm-introduction",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.91,
+                      "source":  "TRAINING MATERIALS/Revenue Management/1. Introduction/sha531_113_yieldmanagement_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_course-transcript.pdf",
+                      "title":  "Course Transcript",
+                      "kind":  "lecture",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.68,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_course-transcript.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_fish-template.pdf",
+                      "title":  "Fishbone Template",
+                      "kind":  "other",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.19,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_fish-template.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_233_funcspacer_en-us.pdf",
+                      "title":  "Function Space Revenue Management",
+                      "kind":  "paper",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  2.08,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_233_funcspacer_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_glossary_en-us_v1.pdf",
+                      "title":  "Glossary",
+                      "kind":  "note",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.13,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_glossary_en-us_v1.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/grades.pdf",
+                      "title":  "Grades",
+                      "kind":  "other",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.71,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/grades.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/grades 2.pdf",
+                      "title":  "Grades 2",
+                      "kind":  "other",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.13,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/grades 2.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/Hotel Food Waste Report 2025.pdf",
+                      "title":  "Hotel Food Waste Report 2025",
+                      "kind":  "paper",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  2025,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.86,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/Hotel Food Waste Report 2025.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/Non-Traditional Applications of Hotel Revenue Management - Course Project.pdf",
+                      "title":  "Non Traditional Applications of Hotel Revenue Management Course Project",
+                      "kind":  "note",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "coursework",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.43,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/Non-Traditional Applications of Hotel Revenue Management - Course Project.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_133_kimesrestrev_en-us.pdf",
+                      "title":  "Restaurant Revenue Management",
+                      "kind":  "paper",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.37,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_133_kimesrestrev_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_123_strategic_en-us.pdf",
+                      "title":  "Strategic Revenue Management",
+                      "kind":  "paper",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  1.74,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_123_strategic_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/6. Non-traditional applications/sha535_tool-the-five-steps.docx",
+                      "title":  "The Five Steps Tool",
+                      "kind":  "other",
+                      "topic":  "rm-nontraditional",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.19,
+                      "source":  "TRAINING MATERIALS/Revenue Management/6. Non-traditional applications/sha535_tool-the-five-steps.docx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_992_accrabeach_en-us.pdf",
+                      "title":  "Accra Beach Hotel (case)",
+                      "kind":  "paper",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "case-study",
+                                   "ecornell"
+                               ],
+                      "size_mb":  1.35,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_992_accrabeach_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_assessing-no-shows.pdf",
+                      "title":  "Assessing No-Shows",
+                      "kind":  "paper",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.18,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_assessing-no-shows.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/SHA534-Printable.pdf",
+                      "title":  "Course Handbook (printable)",
+                      "kind":  "slide",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  1.34,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/SHA534-Printable.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/Course projects.pdf",
+                      "title":  "Course Projects",
+                      "kind":  "note",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "coursework",
+                                   "ecornell"
+                               ],
+                      "size_mb":  4.67,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/Course projects.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_course-transcript.pdf",
+                      "title":  "Course Transcript",
+                      "kind":  "lecture",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  8.15,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_course-transcript.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_992_examation_en-us.pdf",
+                      "title":  "Examination",
+                      "kind":  "paper",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  1.39,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_992_examation_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_glossary_en-us.pdf",
+                      "title":  "Glossary",
+                      "kind":  "note",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.17,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_glossary_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/Grades.pdf",
+                      "title":  "Grades",
+                      "kind":  "other",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.88,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/Grades.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_forecast-no-shows.xlsx",
+                      "title":  "No-Show Forecast Worksheet",
+                      "kind":  "other",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.02,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_forecast-no-shows.xlsx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_992_overbkng_en-us.pdf",
+                      "title":  "Overbooking",
+                      "kind":  "paper",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  3.41,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_992_overbkng_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_tool-overbooking-ratio.pdf",
+                      "title":  "Overbooking Ratio Tool",
+                      "kind":  "other",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.28,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_tool-overbooking-ratio.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_overbooking-spreadsheet.xls",
+                      "title":  "Overbooking Spreadsheet",
+                      "kind":  "other",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.02,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_overbooking-spreadsheet.xls",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/4. Overbooking/sha534_room-inventory-management.pdf",
+                      "title":  "Room Inventory Management",
+                      "kind":  "paper",
+                      "topic":  "rm-overbooking",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  1.2,
+                      "source":  "TRAINING MATERIALS/Revenue Management/4. Overbooking/sha534_room-inventory-management.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/SHA533-Printable.pdf",
+                      "title":  "Course Handbook (printable)",
+                      "kind":  "slide",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  1.1,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/SHA533-Printable.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/sha533_course-transcript.pdf",
+                      "title":  "Course Transcript",
+                      "kind":  "lecture",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  2.61,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/sha533_course-transcript.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/SHA531_991_Discounting_en-us.pdf",
+                      "title":  "Discounting",
+                      "kind":  "paper",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.4,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/SHA531_991_Discounting_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/sha533_distribution-channel-analysis-summary.pdf",
+                      "title":  "Distribution Channel Analysis Summary",
+                      "kind":  "paper",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  2.53,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/sha533_distribution-channel-analysis-summary.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/sha533_glossary.pdf",
+                      "title":  "Glossary",
+                      "kind":  "note",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.17,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/sha533_glossary.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/grade.pdf",
+                      "title":  "Grade",
+                      "kind":  "other",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "admin",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.55,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/grade.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/SHA531_991_PerceivedFairness_en-us.pdf",
+                      "title":  "Perceived Fairness",
+                      "kind":  "paper",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.4,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/SHA531_991_PerceivedFairness_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/sha533_positioning-your-price.pdf",
+                      "title":  "Positioning Your Price",
+                      "kind":  "paper",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.14,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/sha533_positioning-your-price.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/Pricing mix.xlsx",
+                      "title":  "Pricing Mix",
+                      "kind":  "other",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "template",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.01,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/Pricing mix.xlsx",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/Pricing Strategy and Distribution Channels in Hotel Revenue Management - Course Project.pdf",
+                      "title":  "Pricing Strategy and Distribution Channels in Hotel Revenue Management Course Project",
+                      "kind":  "note",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "coursework",
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.37,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/Pricing Strategy and Distribution Channels in Hotel Revenue Management - Course Project.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  },
+                  {
+                      "path":  "Revenue Management/3. Pricing/SHA531_991_RetrospectiveCommentary_en-us.pdf",
+                      "title":  "Retrospective Commentary",
+                      "kind":  "paper",
+                      "topic":  "rm-pricing",
+                      "lang":  "en",
+                      "year":  null,
+                      "tags":  [
+                                   "ecornell"
+                               ],
+                      "size_mb":  0.36,
+                      "source":  "TRAINING MATERIALS/Revenue Management/3. Pricing/SHA531_991_RetrospectiveCommentary_en-us.pdf",
+                      "uploadable":  true,
+                      "url_file":  false
+                  }
+              ],
+    "skipped":  [
+                    {
+                        "path":  "Revenue Management\\1. Introduction\\sha531_225_bstavlblrt_en-us-JVCPLAZA.pdf",
+                        "reason":  "another copy of \"Best Available Rate\""
+                    },
+                    {
+                        "path":  "Revenue Management\\1. Introduction\\sha531_225_bstavlblrt_en-us-JVCPLAZA-2.pdf",
+                        "reason":  "another copy of \"Best Available Rate\""
+                    },
+                    {
+                        "path":  "Revenue Management\\1. Introduction\\SHA531_991_withiamyieldmanagement_en-us.pdf",
+                        "reason":  "another copy of \"Yield Management\""
+                    },
+                    {
+                        "path":  "Revenue Management\\3. Pricing\\SHA533_distribution-channel-analysis-summary-2016-version.pdf",
+                        "reason":  "another copy of \"Distribution Channel Analysis Summary\""
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_acstrategy_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\1. Introduction\\SHA531_991_withiamyieldmanagement_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_BstAvalb_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\1. Introduction\\sha531_225_bstavlblrt_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_dscnthtl_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\3. Pricing\\SHA531_991_Discounting_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_Perceive_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\3. Pricing\\SHA531_991_PerceivedFairness_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_revmanage_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\1. Introduction\\sha531_235_revmanageretro_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_Rtrspeccom_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\3. Pricing\\SHA531_991_RetrospectiveCommentary_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_WishflThnk_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\1. Introduction\\SHA531_991_WishfulThinking_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\4. Overbooking\\sha534_992_yldmngmnt_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\1. Introduction\\sha531_113_yieldmanagement_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\5. Group\\Course projects.pdf",
+                        "reason":  "identical copy of Revenue Management\\4. Overbooking\\Course projects.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\5. Group\\Grades.pdf",
+                        "reason":  "identical copy of Revenue Management\\4. Overbooking\\Grades.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\6. Non-traditional applications\\sha535_992_accrabeach_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\4. Overbooking\\sha534_992_accrabeach_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\6. Non-traditional applications\\sha535_992_examation_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\4. Overbooking\\sha534_992_examation_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\6. Non-traditional applications\\sha535_992_Perceive_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\3. Pricing\\SHA531_991_PerceivedFairness_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\6. Non-traditional applications\\sha535_992_WishflThnk_en-us.pdf",
+                        "reason":  "identical copy of Revenue Management\\1. Introduction\\SHA531_991_WishfulThinking_en-us.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\Paypall - Receipt.pdf",
+                        "reason":  "payment receipt, not study material"
+                    },
+                    {
+                        "path":  "Revenue Management\\Receipt.pdf",
+                        "reason":  "payment receipt, not study material"
+                    },
+                    {
+                        "path":  "HTML\\Lo_trinh_hoc_HTML_chinh_sua_co_san.docx",
+                        "reason":  "same document as HTML\\Lo_trinh_hoc_HTML_chinh_sua_co_san.pdf"
+                    },
+                    {
+                        "path":  "Python\\Anaconda3-2025.12-2-Windows-x86_64.exe",
+                        "reason":  "software installer, not study material"
+                    },
+                    {
+                        "path":  "Python\\Lo_trinh_hoc_Python_cho_AI_PowerQuery.docx",
+                        "reason":  "same document as Python\\Lo_trinh_hoc_Python_cho_AI_PowerQuery.pdf"
+                    },
+                    {
+                        "path":  "Revenue Management\\eCornell Credential - Diu Huynh.url",
+                        "reason":  "same document as Revenue Management\\eCornell Credential - Diu Huynh.pdf"
+                    }
+                ]
+}

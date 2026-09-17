@@ -120,3 +120,22 @@ authors, summary and takeaways through `unaccent`, which is what makes accent-fr
   **Manage topics** button (create / rename / delete in a modal); slugs are generated from the
   English name.
 - The dashboard's month histogram covers the last 12 months, zero-filled so quiet months stay visible.
+
+## Bulk import of the TRAINING MATERIALS folder
+
+`import.html` is a one-off tool for loading the existing archive. Open it while signed in,
+pick the `TRAINING MATERIALS` folder, and it creates the topic tree and one item per file,
+uploading each attachment straight from your machine to Supabase Storage.
+
+- `import-manifest.json` holds the curated catalogue: the topic tree, and for each file a
+  cleaned-up title, kind, language, tags and target topic. Edit it before running if you want
+  different titles or groupings.
+- **Dry run is on by default** — it logs exactly what would happen without writing anything.
+- Re-running is safe: an item whose title already exists under the same topic is skipped.
+- Files over the 50 MB per-file limit on Supabase's free tier are catalogued without an
+  attachment, with the original path recorded in the summary.
+- `learned_on` is taken from each file's modified date, as the closest available proxy for when
+  the material was studied. Correct it per item afterwards if it matters.
+- Excluded deliberately: the Anaconda installer (software, not material), two PayPal receipts,
+  and duplicate copies — byte-identical files and personalised reprints of the same reading are
+  catalogued once.

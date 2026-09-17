@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Import materials - Knowledge Library</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#128228;</text></svg>" />
+</head>
+<body>
+  <main class="screen import-screen">
+    <p><a href="courses.html">&larr; Knowledge Library</a></p>
+    <h1>Import materials</h1>
+    <p class="muted">
+      One-off bulk import of the <code>TRAINING MATERIALS</code> folder. Everything is read from
+      your machine and sent straight to Supabase Storage &mdash; nothing passes through GitHub.
+    </p>
+
+    <section class="card stack" id="summary">
+      <p class="loading"><span class="spinner"></span> Loading manifest&hellip;</p>
+    </section>
+
+    <section class="card stack">
+      <h2>1. Pick the folder</h2>
+      <p class="small muted">
+        Choose the <strong>TRAINING MATERIALS</strong> folder itself. Your browser will ask you to
+        confirm uploading multiple files &mdash; that prompt is normal.
+      </p>
+      <input type="file" id="folder" webkitdirectory directory multiple />
+      <p class="inline-status" id="pick-status"></p>
+    </section>
+
+    <section class="card stack">
+      <h2>2. Run the import</h2>
+      <div class="row">
+        <button type="button" class="btn primary" id="run" disabled>Start import</button>
+        <label class="check">
+          <input type="checkbox" id="dry-run" checked />
+          <span>Dry run (no writes)</span>
+        </label>
+      </div>
+      <div class="progress" id="progress" hidden>
+        <div class="progress-bar"><span id="progress-fill"></span></div>
+        <p class="small muted" id="progress-text"></p>
+      </div>
+      <pre class="import-log" id="log" aria-live="polite"></pre>
+    </section>
+  </main>
+
+  <script type="module" src="import.js"></script>
+</body>
+</html>
