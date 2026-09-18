@@ -4,7 +4,9 @@
 
 import * as db from './db.js';
 import { BUILD } from './config.js';
-import { extractPdfText, buildDocumentFrequency, extractKeywords, summarise, disposeOcr } from './extract-text.js';
+import {
+  extractPdfText, buildDocumentFrequency, extractKeywords, summarise, disposeOcr, cleanExtractedText,
+} from './extract-text.js';
 
 const $ = (sel) => document.querySelector(sel);
 const logEl = $('#log');
@@ -59,7 +61,10 @@ async function init() {
     <p class="small muted">Build ${BUILD}. If this page ever hangs on "Loading", press Ctrl+F5 &mdash;
     GitHub Pages caches scripts for 10 minutes after a push.</p>`;
 
-  if (session) $('#run').disabled = false;
+  if (session) {
+    $('#run').disabled = false;
+    $('#reprocess').disabled = false;
+  }
 }
 
 // --------------------------------------------------------------------------
@@ -322,7 +327,77 @@ async function runExtraction(dryRun) {
   log(`Extraction done. ${dryRun ? jobs.length + ' would be indexed' : written + ' indexed'}.`);
 }
 
+/**
+ * Rebuilds keywords and summaries from the text already in the database, and
+ * repairs the stored text itself (PDF kerning splits words like "r evenue",
+ * which also stops search finding them). No folder pick, no PDF re-read.
+ */
+async function reprocessStored() {
+  const button = $('#reprocess');
+  const dryRun = $('#dry-run').checked;
+  button.disabled = true;
+  logEl.textContent = '';
+  log(dryRun ? 'DRY RUN - nothing will be written.' : 'Rebuilding from stored text.');
+
+  try {
+    const rows = await db.listExtractedContent();
+    if (!rows.length) {
+      log('No extracted text yet. Run the import with "Read PDF text" ticked first.');
+      return;
+    }
+    log(`${rows.length} items with stored text.`);
+
+    // Clean first, so keyword statistics are computed over repaired text.
+    for (const row of rows) row.clean = cleanExtractedText(row.content);
+    const stats = buildDocumentFrequency(rows.map((row) => row.clean));
+
+    let written = 0;
+    let repaired = 0;
+    rows.forEach((row, index) => {
+      if (row.clean !== row.content) repaired += 1;
+      setProgress(index + 1, rows.length, row.title);
+    });
+
+    let index = 0;
+    for (const row of rows) {
+      index += 1;
+      setProgress(index, rows.length, row.title);
+      const keywords = extractKeywords(row.clean, stats, 12);
+      const summary = summarise(row.clean, keywords);
+
+      if (dryRun) {
+        log(`"${row.title}" -> ${keywords.slice(0, 6).join(', ')}`, 'dry');
+        continue;
+      }
+      try {
+        // summary is passed explicitly here: this pass is meant to replace
+        // the generated ones, unlike extraction which never overwrites.
+        await db.saveExtraction(row.id, {
+          content: row.clean,
+          keywords,
+          pages: row.content_pages,
+          method: row.content_method,
+          summary,
+        });
+        written += 1;
+        log(`rebuilt "${row.title}"`, 'ok');
+      } catch (error) {
+        log(`failed "${row.title}": ${error.message}`, 'err');
+      }
+    }
+
+    log('');
+    log(`${dryRun ? rows.length + ' would be rebuilt' : written + ' rebuilt'}. ${repaired} had split words repaired.`);
+    if (dryRun) log('Untick "Dry run" and press the button again to write.');
+  } catch (error) {
+    log(`Stopped: ${error.message}`, 'err');
+  } finally {
+    button.disabled = false;
+  }
+}
+
 $('#run').addEventListener('click', runImport);
+$('#reprocess').addEventListener('click', reprocessStored);
 
 // A blank "Loading..." tells the user nothing. Anything unexpected surfaces here.
 init().catch((error) => {

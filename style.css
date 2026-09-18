@@ -975,3 +975,12 @@ button.badge.keyword:hover { filter: brightness(1.08); text-decoration: underlin
   .mm-label { font-size: 14px; }
   .mindmap { max-height: none; }
 }
+
+.prose-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.prose-list li { line-height: 1.55; }

@@ -58,6 +58,16 @@
         <div class="progress-bar"><span id="progress-fill"></span></div>
         <p class="small muted" id="progress-text"></p>
       </div>
+    </section>
+
+    <section class="card stack">
+      <h2>3. Rebuild summaries and key topics</h2>
+      <p class="small muted">
+        Re-derives key topics and summaries from the text already stored, and repairs words the
+        PDF text layer split apart (<code>r evenue</code> &rarr; <code>revenue</code>), which also
+        fixes search for those words. No folder needed. Honours the <strong>Dry run</strong> box above.
+      </p>
+      <button type="button" class="btn" id="reprocess" disabled>Rebuild from stored text</button>
       <pre class="import-log" id="log" aria-live="polite"></pre>
     </section>
   </main>

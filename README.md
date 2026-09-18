@@ -197,3 +197,19 @@ on the server have changed. A stale module can hang the page with no error in th
 Press **Ctrl+F5** (Ctrl+Shift+R) after pushing. `config.js` carries a `BUILD` stamp that is
 logged to the console on boot and shown on the import page, so you can always tell which version
 the browser is actually running.
+
+### Rebuilding summaries
+
+Summaries are written as one bullet per line and rendered as a real list on the item page.
+`import.html` has a **Rebuild from stored text** button that re-derives key topics and summaries
+from the text already in the database — no folder pick, no PDF re-read — and repairs words the
+PDF text layer split apart.
+
+That repair matters for search as much as for reading: justified PDF text arrives with words cut
+after a letter or two (`r evenue`, `la rgest`), and Postgres indexes those as separate tokens, so
+searching "revenue" would never find them. Single letters other than `a`/`A`/`I` are always
+rejoined; those three, and real two-letter words, are only rejoined when the remainder is not a
+word in its own right, so "a product" and "of course" survive intact.
+
+Unlike the extraction pass, which never touches a summary you wrote, this pass replaces generated
+summaries — that is its purpose.

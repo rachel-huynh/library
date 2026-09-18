@@ -219,6 +219,24 @@ export function keywordChips(keywords, onSelect) {
         : el('span', { class: 'badge keyword' }, word)));
 }
 
+/**
+ * Render free text, turning "- " lines into a real list. Applies to generated
+ * summaries and to anything you type with dashes yourself.
+ */
+export function proseNode(text) {
+  const value = String(text ?? '').trim();
+  if (!value) return null;
+
+  const lines = value.split('\n').map((line) => line.trim()).filter(Boolean);
+  const bulleted = lines.filter((line) => /^[-•*]\s+/.test(line));
+
+  if (bulleted.length >= 2 && bulleted.length === lines.length) {
+    return el('ul', { class: 'prose-list' },
+      lines.map((line) => el('li', {}, line.replace(/^[-•*]\s+/, ''))));
+  }
+  return el('p', { class: 'prose' }, value);
+}
+
 export function excerpt(text, max = 180) {
   const value = String(text ?? '').replace(/\s+/g, ' ').trim();
   return value.length > max ? `${value.slice(0, max - 1)}…` : value;
@@ -609,8 +627,8 @@ export function itemDetail({ item, notes, links, breadcrumb, fileUrl }, handlers
             : null)
       : null,
 
-    item.summary ? el('section', { class: 'card' }, el('h2', {}, t('item.summary')), el('p', { class: 'prose' }, item.summary)) : null,
-    item.takeaways ? el('section', { class: 'card' }, el('h2', {}, t('item.takeaways')), el('p', { class: 'prose' }, item.takeaways)) : null,
+    item.summary ? el('section', { class: 'card' }, el('h2', {}, t('item.summary')), proseNode(item.summary)) : null,
+    item.takeaways ? el('section', { class: 'card' }, el('h2', {}, t('item.takeaways')), proseNode(item.takeaways)) : null,
 
     el('section', { class: 'card' },
       el('h2', {}, t('item.notes')),

@@ -74,12 +74,51 @@ export async function disposeOcr() {
 
 const MIN_CHARS_PER_PAGE = 24; // below this a page is treated as image-only
 
+// "a", "A" and "I" are the only single letters that stand alone as words, so a
+// fragment after them is only rejoined when it is not itself a word. This list
+// covers what actually follows them in prose - without it, "a product" silently
+// becomes "aproduct".
+const WORDS_AFTER_ARTICLE = new Set(`
+product products service services person people thing things time times way ways
+lot lots bit few number numbers result results value values price prices rate rates
+room rooms hotel hotels guest guests customer customers market markets model models
+report reports system systems process project projects course courses book page day
+week month year part point points case cases group set list note plan goal need
+company business team member level line unit type kind form range share cost total
+am is was were will would can could shall should must may might do did does done
+have has had need want think know feel see say make take give find use used using
+good great small large long short high low new big single simple second third
+different similar specific certain given common major minor final same other such
+more most less least very much many both each every all any some no not only
+`.trim().split(/\s+/));
+
+// Real two-letter words plus units, which must never absorb the next word.
+const TWO_LETTER_WORDS = new Set(`
+am an as at be by do go he if in is it me my no of on or so to up us we
+ad ax ex ok oh ah hi ha re id tv pc os ui ai ml kg cm mm km lb oz ft hr pm
+`.trim().split(/\s+/));
+
 /**
- * Drop caps land in the text layer as a detached letter ("D uration").
- * A and I are skipped, since "A book" and "I think" are real.
+ * PDF text layers split words in two ways:
+ *   - drop caps, leaving a detached capital ("D uration")
+ *   - letter spacing for justification ("r evenue", "la rgest")
+ * Both break search - "revenue" will not match "r evenue" - so a word cut near
+ * its start is rejoined, conservatively enough not to fuse real words together.
  */
-function fixDropCaps(text) {
-  return text.replace(/\b([B-HJ-Z]) ([a-z]{2,})\b/g, '$1$2');
+export function cleanExtractedText(text) {
+  return String(text ?? '')
+    .replace(/\s+/g, ' ')
+    // Hyphenation across a line break: "manage- ment".
+    .replace(/([a-z])-\s+([a-z]{2,})\b/g, '$1$2')
+    // Any single letter other than a/A/I is never a word: always rejoin.
+    .replace(/\b([B-HJ-Zb-hj-z]) ([a-z]{2,})\b/g, '$1$2')
+    // a / A / I: rejoin only when the remainder is not a word of its own.
+    .replace(/\b([aAI]) ([a-z]{2,})\b/g, (match, letter, rest) =>
+      WORDS_AFTER_ARTICLE.has(rest) ? match : letter + rest)
+    // Two-letter starts: "la rgest" -> "largest", but never "of course".
+    .replace(/\b([a-z]{2}) ([a-z]{3,})\b/g, (match, prefix, rest) =>
+      TWO_LETTER_WORDS.has(prefix) || WORDS_AFTER_ARTICLE.has(prefix) ? match : prefix + rest)
+    .trim();
 }
 
 /**
@@ -101,7 +140,7 @@ export async function extractPdfText(file, { ocr = false, maxPages = 400, onProg
     const page = await doc.getPage(n);
 
     const content = await page.getTextContent();
-    let pageText = fixDropCaps(content.items.map((item) => item.str).join(' ').replace(/\s+/g, ' ').trim());
+    let pageText = cleanExtractedText(content.items.map((item) => item.str).join(' '));
 
     if (pageText.length >= MIN_CHARS_PER_PAGE) {
       textPages += 1;
@@ -196,8 +235,8 @@ const BOILERPLATE = /copyright|all rights reserved|©\s*\d{4}|trademarks?|ecorne
  * Extractive summary: score each sentence by the keywords it carries, keep the
  * best few, and put them back in document order so it still reads as prose.
  */
-export function summarise(text, keywords, { sentences = 3, maxChars = 700 } = {}) {
-  const clean = String(text ?? '').replace(/\s+/g, ' ').trim();
+export function summarise(text, keywords, { sentences = 5, bullets = true } = {}) {
+  const clean = cleanExtractedText(text);
   if (!clean) return '';
 
   const weight = new Map(keywords.map((term, index) => [term, keywords.length - index]));
@@ -207,7 +246,7 @@ export function summarise(text, keywords, { sentences = 3, maxChars = 700 } = {}
     .filter(({ sentence }) =>
       sentence.length >= 60 && sentence.length <= 400 && !BOILERPLATE.test(sentence));
 
-  if (!candidates.length) return clean.slice(0, maxChars);
+  if (!candidates.length) return clean.slice(0, 900);
 
   const scored = candidates
     .map((candidate) => {
@@ -220,7 +259,17 @@ export function summarise(text, keywords, { sentences = 3, maxChars = 700 } = {}
     .slice(0, sentences)
     .sort((a, b) => a.index - b.index);
 
-  let out = scored.map((s) => s.sentence).join(' ');
-  if (out.length > maxChars) out = `${out.slice(0, maxChars - 1).trimEnd()}…`;
-  return out;
+  const picked = scored.map((s) => tidySentence(s.sentence));
+  // One point per line, so the item page can render it as a real list.
+  return bullets ? picked.map((line) => `- ${line}`).join('\n') : picked.join(' ');
+}
+
+/** Trim the leading list numbers and stray punctuation that survive extraction. */
+function tidySentence(sentence) {
+  let out = sentence
+    .replace(/^[\s•\-–]*\d{1,2}[.)]?\s+/, '')
+    .replace(/^[\s•\-–]+/, '')
+    .trim();
+  if (out && !/[.!?]$/.test(out)) out += '.';
+  return out.charAt(0).toUpperCase() + out.slice(1);
 }

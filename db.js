@@ -228,6 +228,20 @@ export async function saveExtraction(itemId, { content, keywords, pages, method,
   return unwrap(await supabase.from('items').update(patch).eq('id', itemId).select('id').single());
 }
 
+/**
+ * Items whose text has already been extracted, with the body, for re-deriving
+ * keywords and summaries without touching the original PDFs again.
+ */
+export async function listExtractedContent() {
+  return unwrapList(
+    await supabase
+      .from('items')
+      .select('id, title, content, content_pages, content_method')
+      .not('content', 'is', null)
+      .order('title')
+  );
+}
+
 export async function keywordCounts(limit = 40) {
   return unwrapList(await supabase.rpc('keyword_counts', { lim: limit }));
 }
